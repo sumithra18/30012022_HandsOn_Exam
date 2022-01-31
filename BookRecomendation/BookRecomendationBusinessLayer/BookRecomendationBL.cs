@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BookRecomendationDataAccessLayer;
+using BookRecomendationDTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookRecomendationDataAccessLayer;
-using BookRecomendationDTO;
+
 
 namespace BookRecomendationBusinessLayer
 {
@@ -26,18 +27,26 @@ namespace BookRecomendationBusinessLayer
             }
             catch (Exception)
             {
-                return -89;
+                return -1;
             }
         }
-        public void ShowReviewsForBook()
+        public List<BookDTO> ShowReviewsForBook()
         {
-           
+            {
+                BookRecomendationDAL dalObj = new BookRecomendationDAL();
+                List<BookDTO> showReviewBook = dalObj.GetAllReviews();
+                return showReviewBook;
+            }
+
         }
 
-
-        public void AddReviewForBook()
+       
+            public void AddReviewForBook(BookDTO newreviewobj, out int newreviewid)
         {
-          
+            {
+                BookRecomendationDAL dalObj = new BookRecomendationDAL();
+                return dalObj.AddReview(newreviewobj, out newreviewid);
+            }
         }
       
     }
