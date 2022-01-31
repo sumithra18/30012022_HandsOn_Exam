@@ -18,6 +18,7 @@ namespace BookRecomendationWebApp.Controllers
     public class RecomendBookController : Controller
     {
         BookRecomendationBL blObj;
+        private object apiResponse;
         public RecomendBookController()
         {
             blObj = new BookRecomendationBL();
@@ -43,9 +44,42 @@ namespace BookRecomendationWebApp.Controllers
         }
 
 
+        [HttpPost]
 
-        public void AddReviews()
+        public ActionResult AddReviews(BookViewModel fromUIObj)
         {
+          
+            {
+                try
+                {
+                    if (fromUIObj != null)
+                    {
+                        BookDTO newDept = new BookDTO();
+                        newDept.bookReviews = fromUIObj.bookReviews;
+                        newDept.bookName = fromUIObj.bookName;
+                        
+                        int returnVal = blObj.AddReviews(newReview, out newReviewID);
+                        if (returnVal == 1)
+                        {
+                            return RedirectToAction("DisplayAllDepartment");
+                        }
+                        else
+                        {
+                            return View("Error");
+                        }
+                        return View("Success");
+                    }
+                    else
+                    {
+                        return View("Error");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return View("Error");
+                }
+
+            }
 
         }
         [HttpGet]
@@ -76,4 +110,4 @@ namespace BookRecomendationWebApp.Controllers
 
 
 
-
+      

@@ -20,7 +20,7 @@ namespace BookReviewsAPI.Controllers
             try
             {
                 BookRecomendationBL blObj = new BookRecomendationBL();
-                List<BookDTO> diplayIndex = blObj.GetAllReviews();
+                List<BookDTO> diplayIndex = blObj.ShowReviewsForBook();
                 if (diplayIndex.Count > 0)
                     return Request.CreateResponse(HttpStatusCode.OK, diplayIndex);
                 else
@@ -36,5 +36,4 @@ namespace BookReviewsAPI.Controllers
 
     }
 
-}
 }
