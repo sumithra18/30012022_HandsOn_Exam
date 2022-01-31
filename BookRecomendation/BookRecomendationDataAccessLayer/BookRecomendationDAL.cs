@@ -63,6 +63,10 @@ namespace BookRecomendationDataAccessLayer
             }
         }
 
+        public void AddReview(BookDTO newreviewobj, out int newreviewid)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public void SaveReviewForBookToDB(BookDTO newreviewobj, out int newreviewid)
