@@ -15,9 +15,26 @@ namespace BookReviewsAPI.Controllers
 
 
         [HttpGet]
-        public void GetRatingsForBook()
+        public HttpResponseMessage GetRatingsForBook()
         {
+            try
+            {
+                BookRecomendationBL blObj = new BookRecomendationBL();
+                List<BookDTO> diplayIndex = blObj.GetAllReviews();
+                if (diplayIndex.Count > 0)
+                    return Request.CreateResponse(HttpStatusCode.OK, diplayIndex);
+                else
+                    return Request.CreateResponse(HttpStatusCode.OK, "No Book Recommended for you");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
+
     }
+
+}
 }

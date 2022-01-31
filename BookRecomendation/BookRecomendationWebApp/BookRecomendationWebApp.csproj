@@ -170,11 +170,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\RecomendBook\DisplayResultsUsingWebAPI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\BookRecomend\" />
-    <Folder Include="Views\RecomendBook\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -194,9 +194,17 @@
       <Project>{bbe8b74e-6fdd-40e3-b7bc-e6d78e7b10be}</Project>
       <Name>BookRecomendationBusinessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BookRecomendationDataAccessLayer\BookRecomendationDataAccessLayer.csproj">
+      <Project>{64fe62c5-087b-4b8e-ac42-eb96e51455f2}</Project>
+      <Name>BookRecomendationDataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookRecomendationDTO\BookRecomendationDTO.csproj">
       <Project>{df7ab3de-d91a-4a5f-8d36-8e2a35d04423}</Project>
       <Name>BookRecomendationDTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookReviewsAPI\BookReviewsAPI.csproj">
+      <Project>{035871f3-a8b6-41a9-a712-b06b5fe20627}</Project>
+      <Name>BookReviewsAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

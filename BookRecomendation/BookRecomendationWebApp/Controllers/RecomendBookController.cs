@@ -17,8 +17,13 @@ namespace BookRecomendationWebApp.Controllers
     //DO NOT MODIFY THE METHOD NAMES : Adding of parameters / changing the return types of the given methods may be required.
     public class RecomendBookController : Controller
     {
+        BookRecomendationBL blObj;
+        public RecomendBookController()
+        {
+            blObj = new BookRecomendationBL();
+        }
         // GET: RecomendBook
-        
+
         public HttpResponseMessage Index()
         {
             try
@@ -46,9 +51,29 @@ namespace BookRecomendationWebApp.Controllers
         [HttpGet]
         public void DisplayResultsUsingWebAPI()
         {
-            
+            try
+            {
+                List<BookDTO> displayReviews = blObj.GetAllReviews();
+                List<BookViewModel> lstReviewsModel = new List<BookViewModel>();
+                foreach (var RecomendBook in displayReviews)
+                {
+                    BookViewModel newObj = new BookViewModel();
+                    newObj.bookName = RecomendBook.bookName;
+                    newObj.bookReviews = RecomendBook.bookReviews; 
+                    newObj.bookRating = RecomendBook.bookRating;
+                    lstReviewsModel.Add(newObj);
+                }
+                return View(lstReviewsModel);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+
         }
     }
 }
+
+
 
 
