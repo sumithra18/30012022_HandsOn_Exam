@@ -29,7 +29,7 @@ namespace BookRecomendationWebApp.Controllers
             try
             {
                 BookRecomendationBL blObj = new BookRecomendationBL();
-                List<BookDTO> diplayIndex = blObj.Index();
+                List<BookDTO> diplayIndex = blObj.ShowReviewsForBook();
                 if (diplayIndex.Count > 0)
                     return Request.CreateResponse(HttpStatusCode.OK, diplayIndex);
                 else
@@ -49,11 +49,11 @@ namespace BookRecomendationWebApp.Controllers
 
         }
         [HttpGet]
-        public void DisplayResultsUsingWebAPI()
+        public HttpResponseMessage DisplayResultsUsingWebAPI()
         {
             try
             {
-                List<BookDTO> displayReviews = blObj.GetAllReviews();
+                List<BookDTO> displayReviews = blObj.ShowReviewsForBook();
                 List<BookViewModel> lstReviewsModel = new List<BookViewModel>();
                 foreach (var RecomendBook in displayReviews)
                 {

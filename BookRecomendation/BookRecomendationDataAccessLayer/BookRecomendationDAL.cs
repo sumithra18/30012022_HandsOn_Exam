@@ -33,15 +33,44 @@ namespace BookRecomendationDataAccessLayer
                 return -22;
             }
         }
-        public void FetchReviewsForBook()
+        public List<BookDTO> FetchReviewsForBook()
         {
+            try
+            {
+                cmdObj = new SqlCommand(@"SELECT title,review,rating FROM BookRecomendation", conObj);
+                conObj.Open();
+                SqlDataReader drDept = cmdObj.ExecuteReader();
+               
+                List<BookDTO> lstReviews = new List<BookDTO>();
+                while (drDept.Read())
+                {
+                    BookDTO bookRecommendFromReader = new BookDTO();
+                    bookRecommendFromReader.bookName = drDept["Name"].ToString();
+                    bookRecommendFromReader.bookReviews = drDept["Reviews"].ToString();
+                    //reviewFromReader.bookRating = drreview["Rating"].ToString();
+                    lstReviews.Add(bookRecommendFromReader);
+                    
+                }
+                return lstReviews;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conObj.Close();
+            }
         }
 
-        public void SaveReviewForBookToDB()
-        {
-        }
+    }
 
-}
+    public void SaveReviewForBookToDB(BookDTO newreviewobj, out int newreviewid)
+        {
+        throw new NotImplementedException();
+    }
+
+
 }
 
 

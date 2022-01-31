@@ -34,7 +34,7 @@ namespace BookRecomendationBusinessLayer
         {
             {
                 BookRecomendationDAL dalObj = new BookRecomendationDAL();
-                List<BookDTO> showReviewBook = dalObj.GetAllReviews();
+                List<BookDTO> showReviewBook = dalObj.FetchReviewsForBook();
                 return showReviewBook;
             }
 
